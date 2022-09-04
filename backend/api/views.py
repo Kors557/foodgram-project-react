@@ -28,9 +28,7 @@ class SetPasswordAndSubscriptionUserViewSet(UserViewSet):
     queryset = User.objects.all()
     serializer_class = CustomUserSerializer
 
-    @action(methods=['POST'],
-            detail=False,
-            permission_classes=(IsAuthenticated,))
+    @action(methods=['POST'], detail=False, permission_classes=(IsAuthenticated,))
     def set_password(self, request, pk=None):
         user = self.request.user
         serializer = PasswordSerializer(
@@ -90,7 +88,6 @@ class TagsViewSet(RetrieveListViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
     permission_classes = (AllowAny,)
-    pagination_class = None
 
 
 class IngredientsViewSet(RetrieveListViewSet):
@@ -99,7 +96,6 @@ class IngredientsViewSet(RetrieveListViewSet):
     permission_classes = (AllowAny,)
     filter_backends = (DjangoFilterBackend,)
     filterset_class = IngredientFilter
-    pagination_class = None
 
 
 class RecipesViewSet(viewsets.ModelViewSet):
