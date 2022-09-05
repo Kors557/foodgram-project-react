@@ -8,26 +8,23 @@ services:
     env_file:
       - ../backend/.env
 
-  frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
-    volumes:
-      - ../frontend/:/app/result_build/
-    depends_on:
-      - db
-
   backend:
-    build: .
+    image: kors557/foodgramback:v1 
     restart: always 
     volumes:
       - static_value:/app/static/
       - media_value:/app/media/
     depends_on:
-      - frontend
+      - db
     env_file:
       - ../backend/.env
 
+  frontend:
+    image: kors557/foodgramfrot:v1
+    volumes:
+      - ../frontend/
+    depends_on:
+      - backend
 
   nginx:
     image: nginx:1.21.3-alpine
