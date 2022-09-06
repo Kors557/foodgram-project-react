@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 echo "Start migrations..."
 python manage.py migrate
 
