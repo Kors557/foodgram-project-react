@@ -96,6 +96,7 @@ class IngredientsViewSet(RetrieveListViewSet):
     permission_classes = (AllowAny,)
     filter_backends = (DjangoFilterBackend,)
     filterset_class = IngredientFilter
+    search_fields = ('^name',)
 
 
 class RecipesViewSet(viewsets.ModelViewSet):
