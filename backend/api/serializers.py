@@ -207,7 +207,7 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
     def update(self, recipe, validated_data):
         if 'ingredients' in validated_data:
             ingrediens = validated_data.pop('ingredients')
-            recipe.ingrediens.clear()
+            recipe.ingredients.clear()
             self.ingredients_creation(ingrediens, recipe)
         if 'tags' in validated_data:
             tags_data = validated_data.pop('tags')
