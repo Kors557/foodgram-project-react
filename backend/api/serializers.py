@@ -13,10 +13,10 @@ User = get_user_model()
 
 class Base64ImageField(serializers.ImageField):
     def to_internal_value(self, data):
-        if isinstance(data, str) and data.startswith('data:image'):
-            format, imgstr = data.split(';base64,')
-            ext = format.split('/')[-1]
-            data = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
+        if isinstance(data, str) and data.startswith("data:image"):
+            format, imgstr = data.split(";base64,")
+            ext = format.split("/")[-1]
+            data = ContentFile(base64.b64decode(imgstr), name="temp." + ext)
         return super().to_internal_value(data)
 
 
@@ -182,14 +182,14 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
 
     def ingredients_creation(self, recipe, ingredients_data):
         RecipeIngredient.objects.bulk_create(
-            (
+            [
                 RecipeIngredient(
-                    ingredient=Ingredient.objects.get(id=ingredient_item["id"]),
+                    ingredient=get_object_or_404(Ingredient, id=ingredient_item.get("id")),
                     recipe=recipe,
                     amount=ingredient_item.get("amount"),
                 )
-            )
-            for ingredient_item in ingredients_data
+                for ingredient_item in ingredients_data
+            ]
         )
 
     def get_ingredients(self, obj):
