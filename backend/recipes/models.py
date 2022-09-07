@@ -29,7 +29,7 @@ class Tag(models.Model):
 class Recipe(models.Model):
     tags = models.ManyToManyField(Tag, verbose_name="Тег")
     author = models.ForeignKey(User, verbose_name="Автор", on_delete=models.CASCADE, related_name="recipes")
-    ingredients = models.ManyToManyField(Ingredient, verbose_name="Ингредиенты", through='IngredientRecipe')
+    ingredients = models.ManyToManyField(Ingredient, verbose_name="Ингредиенты", through='RecipeIngredient')
     name = models.CharField(verbose_name="Название", max_length=200)
     image = models.ImageField(verbose_name="Картинка", upload_to="recipes/images/")
     text = models.TextField(verbose_name="Описание")
