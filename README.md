@@ -1,5 +1,7 @@
 [![workflow](https://github.com/Kors557/foodgram-project-react/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/Kors557/foodgram-project-react/actions/workflows/main.yml)
 
+сервер http://158.160.7.128/
+
 # Дипломный проект — сайт Foodgram, «Продуктовый помощник».
 Онлайн-сервис и API для него. На этом сервисе пользователи 
 могут публиковать рецепты, подписываться на публикации других 
