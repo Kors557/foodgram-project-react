@@ -45,11 +45,9 @@ TELEGRAM_TOKEN - токен
 `sudo docker-compose exec backend python manage.py createsuperuser` и
 создаем суперпользователя.
 
-Копируем статику `sudo docker-compose exec web python manage.py collectstatic --no-input`.
+Копируем из csv файла тэги `sudo docker-compose exec backend python manage.py loader`.
 
-Копируем из csv файла тэги `sudo docker-compose exec web python manage.py load_tags.py`.
-
-Копируем из csv файла ингредиенты `sudo docker-compose exec web python manage.py load_ingredients.py`.
+Копируем из csv файла ингредиенты `sudo docker-compose backend web python manage.py tags`.
 
 **Автор:**
 
