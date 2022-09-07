@@ -18,4 +18,4 @@ class Command(BaseCommand):
                 name, unit = row
                 Ingredient.objects.get_or_create(
                     name=name, measurement_unit=unit)
-        print('Загрузка завершена')
+        self.stdout.write(self.style.SUCCESS('Загрузка завершена'))
