@@ -29,7 +29,7 @@ class Tag(models.Model):
 class Recipe(models.Model):
     tags = models.ManyToManyField(Tag, verbose_name="Тег")
     author = models.ForeignKey(User, verbose_name="Автор", on_delete=models.CASCADE, related_name="recipes")
-    ingredients = models.ManyToManyField(Ingredient, verbose_name="Ингредиенты")
+    ingredients = models.ManyToManyField(Ingredient, verbose_name="Ингредиенты", through='IngredientRecipe')
     name = models.CharField(verbose_name="Название", max_length=200)
     image = models.ImageField(verbose_name="Картинка", upload_to="recipes/images/")
     text = models.TextField(verbose_name="Описание")
@@ -61,6 +61,7 @@ class RecipeIngredient(models.Model):
         ordering = ["id"]
         verbose_name = "Ингредиент в рецепте"
         verbose_name_plural = "Ингредиенты в рецепте"
+        constraints = [models.UniqueConstraint(fields=["recipe", "ingredient"], name="unique ingredient")]
 
 
 class Favorite(models.Model):
